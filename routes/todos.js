@@ -45,7 +45,7 @@ router.post('/', function(req, res, next) {
 
 //新建一条帖子
 var aclPost=new ACLPost();
-aclPost.set('title','大家好，我是超级新星');
+aclPost.set('title','大家好，我是超级巨星');
 
 //新建ACL对象
 var acl=new AV.ACL();
