@@ -6,6 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var AV = require('leanengine');
+var expressWs=require('express-ws');
 
 // 加载云函数定义，你可以将云函数拆分到多个文件方便管理，但需要在主文件中加载它们
 require('./cloud');
@@ -33,6 +34,15 @@ app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+expressWs(app);
+
+
+app.ws('/echo', function(ws, req) {
+  ws.on('message', function(msg) {
+    ws.send(msg);
+  });
+});
 
 app.get('/', function(req, res) {//将以views中index.ejs为回应页面，并传入new Datae()参数
   res.render('index', { currentTime: new Date() });
