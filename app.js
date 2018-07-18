@@ -39,9 +39,9 @@ expressWs(app);
 
 
 app.ws('/echo', function(ws, req) {
-  ws.on('message', function(msg) {
-    ws.send(msg);
-  });
+ // ws.on('message', function(msg) {
+    ws.send("websocket");
+ // });
 });
 
 app.get('/', function(req, res) {//将以views中index.ejs为回应页面，并传入new Datae()参数
