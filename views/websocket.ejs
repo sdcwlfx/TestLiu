@@ -16,13 +16,14 @@
     console.log(err);
   };
   ws.onopen=function(){
-    console.log('_connect')
+    console.log('_connect');
+    ws.send('data');
   };
   ws.onclose=function(){
     console.log('_close');
   };
  
-  ws.send('data');
+  
  
 </script>
 </body>
