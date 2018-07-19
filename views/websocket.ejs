@@ -41,16 +41,20 @@ jQuery(function($, undefined) {
       terminal.echo('connecting webscoket on ' + url + ' ...');
       connection = new WebSocket(url);
       connection.onopen = function() {
-        terminal.echo('connected!');
+       // terminal.echo('connected!');
+       connection.send('connected!');
       };
       connection.onerror = function(err) {
         terminal.error('error: ' + err);
       };
       connection.onmessage = function(e) {
-        terminal.echo('< ' + e.data);
+       // terminal.echo('< ' + e.data);
+       connection.send('< ' + e.data);
+       
       };
       connection.onclose = function(e) {
-        terminal.echo('connection closed!');
+        //terminal.echo('connection closed!');
+        connection.send('connection closed!');
         connection = null;
       }
     },

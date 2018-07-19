@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 
 router.ws('/echo', (ws, req) => {
   ws.on('message', (msg) => {
+    console.log(msg);
     ws.send("I am back!");
   });
 });
