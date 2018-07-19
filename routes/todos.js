@@ -11,6 +11,7 @@ var ACLPost=AV.Object.extend('ACLPost');
 router.get('/', function(req, res, next) {
   var query = new AV.Query(Todo);//创建查询
   query.descending('createdAt');//createAt递减排序
+  
 
   query.find().then(function(results) {//results为查询结果，以todos为名
     res.render('todos', {//调用views中todos.ejs
