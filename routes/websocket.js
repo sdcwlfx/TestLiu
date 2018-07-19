@@ -9,6 +9,8 @@ var router = express.Router();
  * 你还需要在 app.js 中添加 `expressWs(app);`
  */
 
+expressWs(router);
+
 router.get('/', (req, res) => {
   res.render('websocket.ejs');
 });
