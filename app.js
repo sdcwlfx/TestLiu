@@ -12,6 +12,7 @@ var expressWs=require('express-ws');
 require('./cloud');
 
 var app = express();
+
 expressWs(app);
 
 
@@ -38,11 +39,7 @@ app.use(cookieParser());
 
 
 
-app.ws('/echo', function(ws, req) {
-    ws.on('message', function(msg) {
-    ws.send(msg);
-    });
-});
+
 
 app.get('/', function(req, res) {//将以views中index.ejs为回应页面，并传入new Datae()参数
   res.render('index', { currentTime: new Date() });
@@ -50,6 +47,7 @@ app.get('/', function(req, res) {//将以views中index.ejs为回应页面，并�
 
 // 可以将一类的路由单独保存在一个文件中
 app.use('/todos', require('./routes/todos'));
+app.use('/websocket', require('./routes/websocket'));
 
 app.use(function(req, res, next) {
   // 如果任何一个路由都没有返回响应，则抛出一个 404 异常给后续的异常处理器
