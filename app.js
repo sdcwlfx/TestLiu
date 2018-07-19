@@ -12,7 +12,7 @@ var expressWs=require('express-ws');
 require('./cloud');
 
 var app = express();
-
+expressWs(app);
 
 
 // 设置模板引擎
@@ -35,13 +35,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-expressWs(app);
+
 
 
 app.ws('/echo', function(ws, req) {
- // ws.on('message', function(msg) {
-    ws.send("websocket");
- // });
+    ws.on('message', function(msg) {
+    ws.send(msg);
+    });
 });
 
 app.get('/', function(req, res) {//将以views中index.ejs为回应页面，并传入new Datae()参数
